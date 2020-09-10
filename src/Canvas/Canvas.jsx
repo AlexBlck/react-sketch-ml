@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 
 import CanvasDraw from 'react-canvas-draw'
 import styled from 'styled-components'
+import { GithubPicker } from 'react-color'
 
 import './Canvas.css'
 
@@ -27,7 +28,12 @@ class Canvas extends Component {
       // TODO: Render result into a gallery
       results: [],
       uuid: null,
+      background: '#000',
     }
+  }
+
+  handleChangeComplete = color => {
+    this.setState({ background: color.hex })
   }
 
   uploadImage = async () => {
@@ -129,7 +135,7 @@ class Canvas extends Component {
   }
 
   render() {
-    const { imgSrc, images, results, uuid } = this.state
+    const { imgSrc, images, results, uuid, background } = this.state
 
     return (
       <div>
@@ -141,16 +147,22 @@ class Canvas extends Component {
             <Button name="Undo" onClick={this.undo} />
             <Button name="Reset" onClick={() => this.clearBackground(false)} />
             <Button name="Get random images" onClick={() => this.setState({ results: images })} />
+            <GithubPicker
+              color={background}
+              colors={['#000000', '#B80000', '#DB3E00', '#FCCB00', '#008B02', '#006B76', '#004DCF', '#5300EB']}
+              onChangeComplete={this.handleChangeComplete}
+            />
           </Controls>
           <StyledCanvas
             {...this.props}
+            brushColor={background}
             imgSrc={imgSrc}
             className="CanvasDraw"
             ref={canvasDraw => (this.canvas = canvasDraw)}
             hideGrid
           />
         </div>
-        <Gallery className="Gallery" photos={results} key={uuid || Math.floor(Math.random() * 1000)} />
+        <StyledGallery className="Gallery" photos={results} key={uuid || Math.floor(Math.random() * 1000)} />
       </div>
     )
   }
@@ -167,6 +179,12 @@ const Controls = styled.div`
 const StyledCanvas = styled(CanvasDraw)`
   margin: 1em;
   padding: 0.25em 1em;
+  display: block;
+`
+
+const StyledGallery = styled(Gallery)`
+  margin: 1em;
+  padding: 5em 1em;
   display: block;
 `
 
