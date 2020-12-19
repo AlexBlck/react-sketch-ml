@@ -138,7 +138,7 @@ class Canvas extends Component {
     const { imgSrc, images, results, uuid, background } = this.state
 
     return (
-      <div>
+      <div class="grid-container">
         <div className="Canvas">
           <Controls>
             <Button name="Upload" onClick={this.uploadImage} />
@@ -195,16 +195,16 @@ Canvas.defaultProps = {
   boxShadow: '0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3)',
   brushRadius: 2,
   brushColor: '#000',
-  catenaryColor: '#0a0302',
+  catenaryColor: '#4e8fd4',
   gridColor: 'rgba(150,150,150,0.17)',
   hideGrid: false,
-  canvasWidth: 1200,
+  canvasWidth: 800,
   canvasHeight: 800,
   disabled: false,
   imgSrc: '',
   saveData: null,
   immediateLoading: false,
-  hideInterface: false,
+  hideInterface: true,
 }
 
 export default Canvas

@@ -11,3 +11,10 @@ html {
 Canvas {
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25), 0 8px 16px -8px rgba(0, 0, 0, 0.3)
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: #FFF;
+  padding: 10px;
+}
